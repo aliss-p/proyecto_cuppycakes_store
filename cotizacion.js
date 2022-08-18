@@ -8,12 +8,8 @@ class Cotizacion{
         this.mensaje = mensaje
     }
 };
-// INSTANCIACIÓN DE OBJETO - COTIZACIONES
-const cotizacion1 = new Cotizacion (1, "Victoria", "v@gmail", "264-400000", "Hola");
 //ARRAY DE COTIZACIONES
-const listaDeCotizaciones = [cotizacion1];
-console.log(listaDeCotizaciones);
-
+const listaDeCotizaciones = [];
 //CARGAR LAS COTIZAZIONES COMO OBJETOS AL ARRAY VACÍO
 function crearCotizacion(){
     let nombreInput = document.getElementById("nombreInput")
@@ -21,11 +17,11 @@ function crearCotizacion(){
     let telefonoInput = document.getElementById("telefonoInput")
     let mensajeInput = document.getElementById("mensajeInput")
     let cotizacionCreada = new Cotizacion (listaDeCotizaciones.length+1, nombreInput.value, emailInput.value, telefonoInput.value, mensajeInput.value)
-    
+    //Push
     listaDeCotizaciones.push(cotizacionCreada)
-    console.log(listaDeCotizaciones)
+    //LocalStorage -> Para guardar los mensajes del cliente
+    localStorage.setItem("listaDeCotizaciones", JSON.stringify(listaDeCotizaciones))
 };
 //BOTÓN DE ENVIAR COTIZACIÓN
 const enviarCotizacionBtn = document.getElementById("enviarCotizacionBtn");
 enviarCotizacionBtn.addEventListener("click", crearCotizacion);
-console.log(listaDeCotizaciones);

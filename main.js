@@ -1,4 +1,5 @@
-// DECLARACIÓN DE CLASE - PRODUCTOS
+//      PRODUCTOS
+// DECLARACIÓN DE CLASE
 class Productos{
     constructor (id, nombre, tipo, porciones, foto, precio, descripcion){
         this.id = id
@@ -22,11 +23,9 @@ const producto8 = new Productos(8, "Chocotorta", "tarta", 12, "assets/op-2.webp"
 const producto9 = new Productos(9, "Choco Muffin", "otros", 1, "assets/op-1.webp", 250, "Muffin de húmedo de chocolate.")
 const producto10 = new Productos(10, "Choco-chips cookies", "otros", 3, "assets/op-3.webp", 250, "Pack de 3 galletas con chips de chocolate.")
 const producto11 = new Productos(11, "Macarons", "otros", 6, "assets/op-4.webp", 2000, "Caja con 6 macarons.")
-
 // ARRAY DE PRODUCTOS
-const listaDeProductos = [producto1, producto2, producto3, producto4, producto5, producto6, producto7, producto8, producto9, producto10, producto11]
-console.log(listaDeProductos)//mostrar reservas existentes
-
+const listaDeProductos = [producto1, producto2, producto3, producto4, producto5, producto6, producto7, producto8, producto9, producto10, producto11];
+//console.log(listaDeProductos)//mostrar productos existentes
 //CREAR CARDS DE PRODUCTOS
 let divDeCards = document.getElementById("plantilla");
 listaDeProductos.forEach((producto)=>{
@@ -37,10 +36,56 @@ listaDeProductos.forEach((producto)=>{
                                     <div class="card__section">
                                         <p class="card__text">${producto.descripcion}</p>
                                         <p class="card__text">Precio: $${producto.precio}</p>
-                                        <button class="card__btn btn">Comprar</button>
+                                        <button id="agregarBtn${producto.id}" class="card__btn btn">Agregar al carrito <img src="../media/bx-cart-add.svg" alt="Agregar al carrito"></button>
                                     </div>
                                 </article>`;
     divDeCards.appendChild(nuevoProducto);
+    //GUARDAR EN LOCAL
+    localStorage.setItem("listaDeProductos", JSON.stringify(listaDeProductos))
+    // BTN PARA AGREGAR AL CARRITO
+    let btnAgregar = document.getElementById(`agregarBtn${producto.id}`)
+    //EVENTO PARA QUE EL BOTON AÑADA AL CARRITO
+    btnAgregar.addEventListener("click", () => {aniadirAlCarrito(producto)})
+});
+
+//  CARRITO
+// ARRAY DE CARRITO
+const carritoDeCompras = [];
+//INICIAR CARRITO
+if(localStorage.getItem("carritoDeCompras")){
+    carritoDeCompras = JSON.parse(localStorage.getItem("carritoDeCompras"))
+}else{
+    localStorage.setItem("carrito", [])
+};
+// //FUNCIÓN PARA AÑADIR AL CARRITO
+function aniadirAlCarrito(producto){
+    carritoDeCompras.push(producto)
+    localStorage.setItem("carrito", JSON.stringify(carritoDeCompras))
+}
+//CAPTURA DE BOTONES Y ELEMENTOS PARA EL CARRITO
+let carritotbtn = document.getElementById("carritotbtn");
+let plantillaDelCarrito = document.getElementById("plantillaDelCarrito");
+let totalCarrito = document.getElementById("totalCarrito")
+//MOSTRAR CARRITO CON COSAS
+carritotbtn.addEventListener("click", () => {
+    mostrarCarrito(carritoDeCompras)
 })
-// Anuncio de agredado al carrito
-document.querySelectorAll('.card__btn').forEach(btn => {btn.addEventListener('click', () => {alert('Producto agregado al carrito');})})
+//FUNCION PARA CARGAR COMPRAS AL OFFCANVAS
+function mostrarCarrito(carritoDeCompras){
+    carritoDeCompras.forEach((producto) => {
+        plantillaDelCarrito.innerHTML += `<div>
+                                            <h2>${producto.nombre}</h2>
+                                            <p>Para ${producto.porciones} personas.</p>
+                                            <p>Precio: ${producto.precio}</p>
+                                        </div>`
+    })
+    total(carritoDeCompras)
+    totalCarrito.innerHTML = `<p></p>`
+}
+//FUNCION PARA SUMAR COMPRAS
+function total(carritoDeCompras){
+    let acumulador = 0;
+    carritoDeCompras.forEach((producto) => {
+        acumulador += producto.precio
+    })
+}

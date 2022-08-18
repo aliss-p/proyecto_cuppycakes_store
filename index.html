@@ -28,17 +28,7 @@
                     <li class="nav-item mBtn"><a class="nav-link" href="./pages/cotizacion.html">COTIZACIÓN</a></li>
                     <li class="nav-item mBtn"><a class="nav-link" href="">CONTACTO</a></li>
                 </ul>
-            </div>
-            <button type="button" class="btn btn-primary" id="toastbtn">Show Toast</button>
-            <div class="toast">
-                <div class="toast-header">
-                <strong class="me-auto">Toast Header</strong>
-                <button type="button" class="btn-close" data-bs-dismiss="toast"></button>
-                </div>
-                <div class="toast-body">
-                <p>Some text inside the toast body</p>
-                </div>
-            </div>
+            </div>            
         </nav>
     </header>
 <!-- MAIN -->
@@ -46,6 +36,18 @@
         <div class="main1 container-sm mt-1 mb-1 section slide">
             <h1 class="section__title">Nuestros productos</h1>
             <p class="section__text">En la pastelería trabajamos en diseños personalizados para cada cliente, poniéndo atención a cada detalle en cuanto al sabor y la estética de nuestros productos.</p>
+            </div>
+        </div>
+        <div>
+            <!-- Botón de offcanvas -->
+            <button type="button" class="btn" id="carritotbtn" data-bs-toggle="offcanvas" data-bs-target="#plantillaDelCarrito"><img src="./media/bx-cart.svg" alt="Logo del carrito"></button>
+            <!-- Offcanvas -->
+            <div class="offcanvas offcanvas-end" id="plantillaDelCarrito">
+                <!-- <div class="offcanvas-header">
+                    <h1 class="offcanvas-title">Carrito de compras</h1>
+                    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"></button>
+                </div>-->
+                <div class="offcanvas-body" id="totalCarrito"></div> 
         </div>
         <div id="plantilla" class="container-sm main3"></div>
     </main>
