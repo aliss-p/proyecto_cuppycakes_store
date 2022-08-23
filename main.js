@@ -47,16 +47,19 @@ listaDeProductos.forEach((producto)=>{
     //EVENTO PARA QUE EL BOTON AÑADA AL CARRITO
     btnAgregar.addEventListener("click", () => {aniadirAlCarrito(producto)})
 });
+//Buscar por nombre el producto: ----> Hacer cn input
+let productoBuscado = listaDeProductos.find(producto => producto.nombre == "Chocotorta") ?? "No encontramos ese producto en nuestro stock."
+// console.log(productoBuscado)
+
+//DESESTRUCTURACIÓN (lo voy a usar para hacer un carrusel de fotos)
+
+
+
+
 
 //  CARRITO
-// ARRAY DE CARRITO
-const carritoDeCompras = [];
-//INICIAR CARRITO
-if(localStorage.getItem("carritoDeCompras")){
-    carritoDeCompras = JSON.parse(localStorage.getItem("carritoDeCompras"))
-}else{
-    localStorage.setItem("carrito", [])
-};
+// ARRAY DE CARRITO -> Iniciado con operador OR
+const carritoDeCompras = JSON.parse(localStorage.getItem("carritoDeCompras")) || [];
 // //FUNCIÓN PARA AÑADIR AL CARRITO
 function aniadirAlCarrito(producto){
     carritoDeCompras.push(producto)
@@ -70,6 +73,14 @@ let totalCarrito = document.getElementById("totalCarrito")
 carritotbtn.addEventListener("click", () => {
     mostrarCarrito(carritoDeCompras)
 })
+//FUNCION PARA SUMAR COMPRAS
+function total(carritoDeCompras){
+    acumulador = 0;
+    carritoDeCompras.forEach((producto) => {
+        acumulador += producto.precio
+    })
+    console.log(acumulador)
+}
 //FUNCION PARA CARGAR COMPRAS AL OFFCANVAS
 function mostrarCarrito(carritoDeCompras){
     carritoDeCompras.forEach((producto) => {
@@ -81,11 +92,4 @@ function mostrarCarrito(carritoDeCompras){
     })
     total(carritoDeCompras)
     totalCarrito.innerHTML = `<p></p>`
-}
-//FUNCION PARA SUMAR COMPRAS
-function total(carritoDeCompras){
-    let acumulador = 0;
-    carritoDeCompras.forEach((producto) => {
-        acumulador += producto.precio
-    })
 }
