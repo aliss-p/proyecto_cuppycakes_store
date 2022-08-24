@@ -23,11 +23,18 @@ const producto8 = new Productos(8, "Chocotorta", "tarta", 12, "assets/op-2.webp"
 const producto9 = new Productos(9, "Choco Muffin", "otros", 1, "assets/op-1.webp", 250, "Muffin de húmedo de chocolate.")
 const producto10 = new Productos(10, "Choco-chips cookies", "otros", 3, "assets/op-3.webp", 250, "Pack de 3 galletas con chips de chocolate.")
 const producto11 = new Productos(11, "Macarons", "otros", 6, "assets/op-4.webp", 2000, "Caja con 6 macarons.")
+
 // ARRAY DE PRODUCTOS
 const listaDeProductos = [producto1, producto2, producto3, producto4, producto5, producto6, producto7, producto8, producto9, producto10, producto11];
-//console.log(listaDeProductos)//mostrar productos existentes
-//CREAR CARDS DE PRODUCTOS
+
+//CAPTURA DE ELEMENTOS DOM
+let carritotbtn = document.getElementById("carritotbtn");
+let plantillaDelCarrito = document.getElementById("plantillaDelCarrito");
+let totalCarrito = document.getElementById("totalCarrito");
+let acumulador;
 let divDeCards = document.getElementById("plantilla");
+
+//CREAR CARDS DE PRODUCTOS
 listaDeProductos.forEach((producto)=>{
     let nuevoProducto = document.createElement("div");
     nuevoProducto.innerHTML = `<article id="${producto.id}" class="card">
@@ -47,49 +54,62 @@ listaDeProductos.forEach((producto)=>{
     //EVENTO PARA QUE EL BOTON AÑADA AL CARRITO
     btnAgregar.addEventListener("click", () => {aniadirAlCarrito(producto)})
 });
-//Buscar por nombre el producto: ----> Hacer cn input
+
+//BUSCAR PRODUCTO
 let productoBuscado = listaDeProductos.find(producto => producto.nombre == "Chocotorta") ?? "No encontramos ese producto en nuestro stock."
-// console.log(productoBuscado)
-
-//DESESTRUCTURACIÓN (lo voy a usar para hacer un carrusel de fotos)
-
-
-
-
+console.log(productoBuscado)
 
 //  CARRITO
-// ARRAY DE CARRITO -> Iniciado con operador OR
+// ARRAY DE CARRITO
 const carritoDeCompras = JSON.parse(localStorage.getItem("carritoDeCompras")) || [];
+
 // //FUNCIÓN PARA AÑADIR AL CARRITO
+// function aniadirAlCarrito(producto){
+//     carritoDeCompras.push(producto)
+//     localStorage.setItem("carrito", JSON.stringify(carritoDeCompras))
+// }
 function aniadirAlCarrito(producto){
-    carritoDeCompras.push(producto)
-    localStorage.setItem("carrito", JSON.stringify(carritoDeCompras))
+    let productoAgregado = carritoDeCompras.find((elem) => (elem.id == producto.id));
+    if (productoAgregado == undefined){
+        carritoDeCompras.push(producto);
+        //Subir al storage
+        localStorage.setItem("carrito", JSON.stringify(carritoDeCompras))
+    }
 }
-//CAPTURA DE BOTONES Y ELEMENTOS PARA EL CARRITO
-let carritotbtn = document.getElementById("carritotbtn");
-let plantillaDelCarrito = document.getElementById("plantillaDelCarrito");
-let totalCarrito = document.getElementById("totalCarrito")
+
+//FUNCION PARA SUMAR COMPRAS
+function total(carritoDeCompras){
+    acumulador = 0;
+    totalCarrito.innerHTML = " "
+    carritoDeCompras.forEach((producto) => {
+        acumulador += producto.precio
+    })
+    totalCarrito.innerHTML = `<div class="offcanvas-body" id="totalCarrito">
+                                    <p>El total de tu compra es de $${acumulador}</p>
+                                    <button class="btn btn-secondary" type="button">Comprar</button>
+                                </div>`
+}
+
+//FUNCION PARA CARGAR COMPRAS AL OFFCANVAS
+function mostrarCarrito(carritoDeCompras){
+
+    plantillaDelCarrito.innerHTML = " "
+    carritoDeCompras.forEach((producto) => {
+        plantillaDelCarrito.innerHTML += `<div id="${producto.id}" class="card2">
+                                                <div>
+                                                    <h1 class="card__titulo">${producto.nombre}</h1>
+                                                    <p class="card__precio">Precio: $${producto.precio}</p>
+                                                </div>
+                                                <div>
+                                                    <img src="${producto.foto}" alt="${producto.nombre}" class="card__pics2">
+                                                </div>
+                                            </div>`
+    })
+    total(carritoDeCompras)
+}
+
+//EVENTOS
 //MOSTRAR CARRITO CON COSAS
 carritotbtn.addEventListener("click", () => {
     mostrarCarrito(carritoDeCompras)
 })
-//FUNCION PARA SUMAR COMPRAS
-function total(carritoDeCompras){
-    acumulador = 0;
-    carritoDeCompras.forEach((producto) => {
-        acumulador += producto.precio
-    })
-    console.log(acumulador)
-}
-//FUNCION PARA CARGAR COMPRAS AL OFFCANVAS
-function mostrarCarrito(carritoDeCompras){
-    carritoDeCompras.forEach((producto) => {
-        plantillaDelCarrito.innerHTML += `<div>
-                                            <h2>${producto.nombre}</h2>
-                                            <p>Para ${producto.porciones} personas.</p>
-                                            <p>Precio: ${producto.precio}</p>
-                                        </div>`
-    })
-    total(carritoDeCompras)
-    totalCarrito.innerHTML = `<p></p>`
-}

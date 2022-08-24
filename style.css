@@ -132,15 +132,48 @@ body{
     font-weight: 400;
     text-align: center;
 }
+/* OFFCANVAS */
+.offcanvas{
+    background-color: var(--background);
+}
+.offcanvas-title{
+    font-size: var(--text-large);
+    font-weight: 600;
+    padding: 5%;
+    color: var(--text-color);
+}
+.card2{
+    background-color: var(--primary);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto;
+    padding: 2%;
+    margin: 2%;
+}
+.card__titulo{
+    font-size: var(--text-medium);
+    font-weight: 500;
+    color: var(--text-color);
+}
+.card__pics2{
+    display: inline-block;
+    max-width: 50%;
+    margin-left: 50%;
+}
+.card__precio{
+    font-size: var(--text-small);
+    color: var(--text-color);
+}
 /* FORMULARIOS */
 .form{
-    grid-area: form;
+    /* grid-area: form; */
     font-size: var(--text-medium);
     font-weight: 600;
     background-color: var(--background-trans);
     padding: 5%;
     justify-self: center;
 }
+/* BOTONES */
 .btn{
     background-color: var(--background);
     font-family: 'Montserrat';
@@ -155,6 +188,12 @@ body{
 .btn:hover{
     background-color: var(--primary);
     color: var(--background);
+}
+.btn-del-carrito{
+    display: inline-block;
+    position: fixed;
+    bottom: 3%;
+    right: 3%;
 }
 /* FOOTER */
 footer{
