@@ -56,25 +56,40 @@ listaDeProductos.forEach((producto)=>{
 });
 
 //BUSCAR PRODUCTO
-let productoBuscado = listaDeProductos.find(producto => producto.nombre == "Chocotorta") ?? "No encontramos ese producto en nuestro stock."
-console.log(productoBuscado)
+// let productoBuscado = listaDeProductos.find(producto => producto.nombre == "Chocotorta") ?? "No encontramos ese producto en nuestro stock."
+// console.log(productoBuscado)
 
 //  CARRITO
 // ARRAY DE CARRITO
 const carritoDeCompras = JSON.parse(localStorage.getItem("carritoDeCompras")) || [];
 
 // //FUNCIÓN PARA AÑADIR AL CARRITO
-// function aniadirAlCarrito(producto){
-//     carritoDeCompras.push(producto)
-//     localStorage.setItem("carrito", JSON.stringify(carritoDeCompras))
-// }
 function aniadirAlCarrito(producto){
-    let productoAgregado = carritoDeCompras.find((elem) => (elem.id == producto.id));
+    let productoAgregado = carritoDeCompras.find((e) => (e.id == producto.id));
     if (productoAgregado == undefined){
         carritoDeCompras.push(producto);
-        //Subir al storage
-        localStorage.setItem("carrito", JSON.stringify(carritoDeCompras))
+        localStorage.setItem("carrito", JSON.stringify(carritoDeCompras));
+        Swal.fire({
+            icon: "success",
+            text: 'Agregaste ${producto.nombre} a tu carrito~',
+            confirmButtonText: 'Entendido',
+            buttonsStyling: false,
+            background: '#735D78' ,
+            width: '22em',
+            color: '#090302' ,
+        })
+    }else{
+        Swal.fire({
+            icon: "warning",
+            text: 'Ya agregaste ${producto.nombre} a tu carrito~',
+            confirmButtonText: 'Entendido',
+            buttonsStyling: false,
+            background: '#735D78' ,
+            width: '22em',
+            color: '#090302' ,
+        })
     }
+    
 }
 
 //FUNCION PARA SUMAR COMPRAS
@@ -99,6 +114,7 @@ function mostrarCarrito(carritoDeCompras){
                                                 <div>
                                                     <h1 class="card__titulo">${producto.nombre}</h1>
                                                     <p class="card__precio">Precio: $${producto.precio}</p>
+                                                    <button class="btn btn-secondary" type="button" id="eliminarbtn${producto.id}">Borrar</button>
                                                 </div>
                                                 <div>
                                                     <img src="${producto.foto}" alt="${producto.nombre}" class="card__pics2">
@@ -113,3 +129,5 @@ function mostrarCarrito(carritoDeCompras){
 carritotbtn.addEventListener("click", () => {
     mostrarCarrito(carritoDeCompras)
 })
+
+
