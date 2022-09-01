@@ -1,0 +1,99 @@
+[{
+    "id": 1, 
+    "nombre": "Torta con deco en buttercream", 
+    "tipo": "torta", 
+    "porciones": 15, 
+    "foto": "assets/t-4.webp", 
+    "precio": 5000, 
+    "descripcion": "Torta de 3 pisos, con decoración personalizada en buttercream."
+},
+{
+    "id": 2, 
+    "nombre": "Number/letter cake", 
+    "tipo": "torta", 
+    "porciones": 15, 
+    "foto": "assets/t-2.webp", 
+    "precio": 4000, 
+    "descripcion": "Letter cake rellena con crema a elección del cliente."
+},
+{
+    "id": 3, 
+    "nombre": "Torta con deco en pasta", 
+    "tipo": "torta", 
+    "porciones": 15, 
+    "foto": "assets/t-2.webp", 
+    "precio": 6500, 
+    "descripcion": "Torta de 3 pisos, con decoración personalizada realizada en pasta ballina."
+},
+{
+    "id": 4, 
+    "nombre": "Minicake Selvanegra", 
+    "tipo": "torta", 
+    "porciones": 6, 
+    "foto": "assets/t-2.webp", 
+    "precio": 3500, 
+    "descripcion": "Mini torta de 6 porciones."
+},
+{
+    "id": 5, 
+    "nombre": "Minicake Devil Cake", 
+    "tipo": "torta", 
+    "porciones": 6, 
+    "foto": "assets/t-2.webp", 
+    "precio": 3500, 
+    "descripcion": "Mini torta de 6 porciones."
+},
+{
+    "id": 6, 
+    "nombre": "Cheesecake", 
+    "tipo": "tarta", 
+    "porciones": 12, 
+    "foto": "assets/t-3.webp", 
+    "precio": 2500, 
+    "descripcion": "Tarta de 6 porciones. Se puede solicitar decoración extra."
+},
+{
+    "id": 7, 
+    "nombre": "Lemon pie", 
+    "tipo": "tarta", 
+    "porciones": 12, 
+    "foto": "assets/t-1.webp", 
+    "precio": 2500, 
+    "descripcion": "Tarta de 6 porciones. Se puede solicitar decoración extra."
+},
+{
+    "id": 8, 
+    "nombre": "Chocotorta", 
+    "tipo": "tarta", 
+    "porciones": 12, 
+    "foto": "assets/op-2.webp", 
+    "precio": 2500, 
+    "descripcion": "Tarta de 6 porciones. Se puede solicitar decoración extra."
+},
+{
+    "id": 9, 
+    "nombre": "Choco Muffin", 
+    "tipo": "otros", 
+    "porciones": 1, 
+    "foto": "assets/op-1.webp", 
+    "precio": 250, 
+    "descripcion": "Muffin de húmedo de chocolate."
+},
+{
+    "id": 10,
+    "nombre": "Choco-chips cookies", 
+    "tipo": "otros", 
+    "porciones": 3, 
+    "foto": "assets/op-3.webp", 
+    "precio": 250, 
+    "descripcion": "Pack de 3 galletas con chips de chocolate."
+},
+{
+    "id": 11,
+    "nombre": "Macarons", 
+    "tipo": "otros", 
+    "porciones": 6, 
+    "foto": "assets/op-4.webp", 
+    "precio": 2000, 
+    "descripcion": "Caja con 6 macarons."
+}]
