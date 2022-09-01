@@ -3,7 +3,7 @@
     "nombre": "Torta con deco en buttercream", 
     "tipo": "torta", 
     "porciones": 15, 
-    "foto": "assets/t-4.webp", 
+    "foto": "assets/tortabuttercream.webp", 
     "precio": 5000, 
     "descripcion": "Torta de 3 pisos, con decoración personalizada en buttercream."
 },
@@ -12,7 +12,7 @@
     "nombre": "Number/letter cake", 
     "tipo": "torta", 
     "porciones": 15, 
-    "foto": "assets/t-2.webp", 
+    "foto": "assets/numbercake.webp", 
     "precio": 4000, 
     "descripcion": "Letter cake rellena con crema a elección del cliente."
 },
@@ -21,7 +21,7 @@
     "nombre": "Torta con deco en pasta", 
     "tipo": "torta", 
     "porciones": 15, 
-    "foto": "assets/t-2.webp", 
+    "foto": "assets/tortapasta.webp", 
     "precio": 6500, 
     "descripcion": "Torta de 3 pisos, con decoración personalizada realizada en pasta ballina."
 },
@@ -30,7 +30,7 @@
     "nombre": "Minicake Selvanegra", 
     "tipo": "torta", 
     "porciones": 6, 
-    "foto": "assets/t-2.webp", 
+    "foto": "assets/selvanegra.webp", 
     "precio": 3500, 
     "descripcion": "Mini torta de 6 porciones."
 },
@@ -39,7 +39,7 @@
     "nombre": "Minicake Devil Cake", 
     "tipo": "torta", 
     "porciones": 6, 
-    "foto": "assets/t-2.webp", 
+    "foto": "assets/devilcake.webp", 
     "precio": 3500, 
     "descripcion": "Mini torta de 6 porciones."
 },
@@ -48,7 +48,7 @@
     "nombre": "Cheesecake", 
     "tipo": "tarta", 
     "porciones": 12, 
-    "foto": "assets/t-3.webp", 
+    "foto": "assets/cheesecake.webp", 
     "precio": 2500, 
     "descripcion": "Tarta de 6 porciones. Se puede solicitar decoración extra."
 },
@@ -57,7 +57,7 @@
     "nombre": "Lemon pie", 
     "tipo": "tarta", 
     "porciones": 12, 
-    "foto": "assets/t-1.webp", 
+    "foto": "assets/lemonpie.webp", 
     "precio": 2500, 
     "descripcion": "Tarta de 6 porciones. Se puede solicitar decoración extra."
 },
@@ -66,7 +66,7 @@
     "nombre": "Chocotorta", 
     "tipo": "tarta", 
     "porciones": 12, 
-    "foto": "assets/op-2.webp", 
+    "foto": "assets/chocotorta.webp", 
     "precio": 2500, 
     "descripcion": "Tarta de 6 porciones. Se puede solicitar decoración extra."
 },
@@ -75,7 +75,7 @@
     "nombre": "Choco Muffin", 
     "tipo": "otros", 
     "porciones": 1, 
-    "foto": "assets/op-1.webp", 
+    "foto": "assets/cupcake.webp", 
     "precio": 250, 
     "descripcion": "Muffin de húmedo de chocolate."
 },
@@ -84,7 +84,7 @@
     "nombre": "Choco-chips cookies", 
     "tipo": "otros", 
     "porciones": 3, 
-    "foto": "assets/op-3.webp", 
+    "foto": "assets/cookies.webp", 
     "precio": 250, 
     "descripcion": "Pack de 3 galletas con chips de chocolate."
 },
@@ -93,7 +93,7 @@
     "nombre": "Macarons", 
     "tipo": "otros", 
     "porciones": 6, 
-    "foto": "assets/op-4.webp", 
+    "foto": "assets/macarons.webp", 
     "precio": 2000, 
     "descripcion": "Caja con 6 macarons."
 }]

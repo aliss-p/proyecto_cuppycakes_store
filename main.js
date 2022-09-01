@@ -1,16 +1,16 @@
 //      PRODUCTOS
 // DECLARACIÓN DE CLASE
-// class Productos{
-//     constructor (id, nombre, tipo, porciones, foto, precio, descripcion){
-//         this.id = id
-//         this.nombre = nombre
-//         this.tipo = tipo
-//         this.porciones = porciones
-//         this.foto = foto
-//         this.precio = precio
-//         this.descripcion = descripcion
-//     }
-// };
+class Productos{
+    constructor (id, nombre, tipo, porciones, foto, precio, descripcion){
+        this.id = id
+        this.nombre = nombre
+        this.tipo = tipo
+        this.porciones = porciones
+        this.foto = foto
+        this.precio = precio
+        this.descripcion = descripcion
+    }
+};
 // INSTANCIACIÓN DE OBJETOS
 // const producto1 = new Productos(1, "Torta con deco en buttercream", "torta", 15, "assets/t-4.webp", 5000, "Torta de 3 pisos, con decoración personalizada en buttercream.")
 // const producto2 = new Productos(2, "Number/letter cake", "torta", 15, "assets/t-2.webp", 4000, "Letter cake rellena con crema a elección del cliente.")
@@ -33,12 +33,10 @@ fetch("productos.json")
 .then(data => {
     console.log(data);
     for(let producto of data){
-        let nuevoProducto = new Productos(id, nombre, tipo, porciones, foto, precio, descripcion);
+        let nuevoProducto = new Productos(producto.id, producto.nombre, producto.tipo, producto.porciones, producto.foto, producto.precio, producto.descripcion);
         listaDeProductos.push(nuevoProducto);
     }
-    let listaDeProductos = data;
-})
-
+});
 
 //CAPTURA DE ELEMENTOS DOM
 let carritotbtn = document.getElementById("carritotbtn");
