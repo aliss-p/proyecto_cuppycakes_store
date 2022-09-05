@@ -73,9 +73,10 @@ body{
     grid-template-columns: 1fr, 1fr, 1fr;
     grid-template-areas: 
     '. . .';
-    margin: auto;
+    margin-bottom: 1em;
+    margin-top: 1em;
     padding: 0;
-    gap: 5px;
+    gap: 1em;
 }
 .section{
     font-size: var(--text-medium);
@@ -104,6 +105,7 @@ body{
     flex-direction: column;
     align-items: center;
     padding: 7px;
+    border-radius: 0%;
 }
 .card__section{
     font-size: var(--text-medium);
@@ -118,19 +120,24 @@ body{
     display: block;
     margin-left: auto;
     margin-right: auto;
-    width: 100%;
+    max-width: 16em;
 }
 .card__title{
     text-align: left;
     font-size: var(--text-large);
     font-weight: 600;
-    margin-bottom: 1%;
-    margin-top: 1%;
+    margin-bottom: 1em;
+    margin-top: 1em;
+}
+.card__subtext{
+    font-size: var(--text-small);
+    font-weight: 400;
+    text-align: center;
 }
 .card__text{
     font-size: var(--text-medium);
-    font-weight: 400;
-    text-align: center;
+    font-weight: 500;
+    align-self: flex-start;
 }
 /* OFFCANVAS */
 .offcanvas{
@@ -209,6 +216,9 @@ body{
     position: fixed;
     bottom: 3%;
     right: 3%;
+}
+.card__btn{
+    align-self: flex-end;
 }
 /* FOOTER */
 footer{

@@ -5,7 +5,7 @@
     "porciones": 15, 
     "foto": "assets/tortabuttercream.webp", 
     "precio": 5000, 
-    "descripcion": "Torta de 3 pisos, con decoración personalizada en buttercream."
+    "descripcion": "Torta de 3 rellenos y deco personalizada."
 },
 {
     "id": 2, 
@@ -23,7 +23,7 @@
     "porciones": 15, 
     "foto": "assets/tortapasta.webp", 
     "precio": 6500, 
-    "descripcion": "Torta de 3 pisos, con decoración personalizada realizada en pasta ballina."
+    "descripcion": "Torta de 3 rellenos y deco personalizada."
 },
 {
     "id": 4, 
@@ -50,7 +50,7 @@
     "porciones": 12, 
     "foto": "assets/cheesecake.webp", 
     "precio": 2500, 
-    "descripcion": "Tarta de 6 porciones. Se puede solicitar decoración extra."
+    "descripcion": "Tarta de 12 porciones."
 },
 {
     "id": 7, 
@@ -59,7 +59,7 @@
     "porciones": 12, 
     "foto": "assets/lemonpie.webp", 
     "precio": 2500, 
-    "descripcion": "Tarta de 6 porciones. Se puede solicitar decoración extra."
+    "descripcion": "Tarta de 12 porciones."
 },
 {
     "id": 8, 
@@ -68,7 +68,7 @@
     "porciones": 12, 
     "foto": "assets/chocotorta.webp", 
     "precio": 2500, 
-    "descripcion": "Tarta de 6 porciones. Se puede solicitar decoración extra."
+    "descripcion": "Tarta de 12 porciones."
 },
 {
     "id": 9, 
@@ -96,4 +96,13 @@
     "foto": "assets/macarons.webp", 
     "precio": 2000, 
     "descripcion": "Caja con 6 macarons."
+},
+{
+    "id": 12,
+    "nombre": "Porción individual de torta", 
+    "tipo": "otros", 
+    "porciones": 1, 
+    "foto": "assets/porcion.webp", 
+    "precio": 500, 
+    "descripcion": "Porción de torta a elección."
 }]
