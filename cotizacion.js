@@ -8,20 +8,38 @@ class Cotizacion{
         this.mensaje = mensaje
     }
 };
+
 //ARRAY DE COTIZACIONES
-const listaDeCotizaciones = [];
+let listaDeCotizaciones = JSON.parse(localStorage.getItem('listaDeCotizaciones')) || [];
+
+//ELEMENTOS DEL DOM
+let enviarCotizacionBtn = document.getElementById("enviarCotizacionBtn");
+let nombreInput = document.getElementById("nombreInput")
+let emailInput = document.getElementById("emailInput")
+let telefonoInput = document.getElementById("telefonoInput")
+let mensajeInput = document.getElementById("mensajeInput")
+
 //CARGAR LAS COTIZAZIONES COMO OBJETOS AL ARRAY VACÍO
-function crearCotizacion(){
-    let nombreInput = document.getElementById("nombreInput")
-    let emailInput = document.getElementById("emailInput")
-    let telefonoInput = document.getElementById("telefonoInput")
-    let mensajeInput = document.getElementById("mensajeInput")
-    let cotizacionCreada = new Cotizacion (listaDeCotizaciones.length+1, nombreInput.value, emailInput.value, telefonoInput.value, mensajeInput.value)
+async function crearCotizacion(){
+    let cotizacionCreada = new Cotizacion (listaDeCotizaciones.length+1, nombreInput.value, emailInput.value, telefonoInput.value, mensajeInput.value);
     //Push
-    listaDeCotizaciones.push(cotizacionCreada)
+    listaDeCotizaciones.push(cotizacionCreada);
     //LocalStorage -> Para guardar los mensajes del cliente
-    localStorage.setItem("listaDeCotizaciones", JSON.stringify(listaDeCotizaciones))
+    localStorage.setItem("listaDeCotizaciones", JSON.stringify(listaDeCotizaciones));
 };
-//BOTÓN DE ENVIAR COTIZACIÓN
-const enviarCotizacionBtn = document.getElementById("enviarCotizacionBtn");
-enviarCotizacionBtn.addEventListener("click", crearCotizacion);
+
+//EVENTO PARA ENVIAR CON EL BOTÒN
+enviarCotizacionBtn.addEventListener("click", ()=>{
+    //Alerta
+    Swal.fire({
+        icon: "success",
+        text: `Gracias por enviarnos tu consulta. Te responderemos al mail que nos indicaste a la brevedad~`,
+        confirmButtonText: 'Ok',
+        buttonsStyling: false,
+        background: '#735D78',
+        width: '22em',
+        color: '#090302',
+    });
+    crearCotizacion();
+    event.preventDefault();
+});

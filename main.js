@@ -12,7 +12,7 @@ class Productos{
     }
 };
 
-// // ARRAY DE PRODUCTOS
+// ARRAY DE PRODUCTOS
 let listaDeProductos = []
 //DESDE productos.json
 fetch("productos.json")
@@ -101,47 +101,44 @@ function total(){
                                     
                                 </div>`
     localStorage.setItem("carritoDeCompras", JSON.stringify(carritoDeCompras));
-}
+};
 
 //CARGAR COMPRAS AL OFFCANVAS
 async function cargandoElCarritoDeCompras(){
     plantillaDelCarrito.innerHTML = " " ;
     carritoDeCompras.forEach((producto, id) => {
-    plantillaDelCarrito.innerHTML += `<div id="${producto.id}" class="card2">
-                                            <div>
-                                                <h1 class="card__titulo">${producto.nombre}</h1>
-                                                <p class="card__precio">Precio: $${producto.precio}</p>
-                                                <button class="btn btn-secondary borrarbtn2" type="button" id="eliminarbtn${producto.id}">Borrar</button>
-                                            </div>
-                                            <div>
-                                                <img src="${producto.foto}" alt="${producto.nombre}" class="card__pics2">
-                                            </div>
-                                        </div>` ;
-    //Boton para borrar con alert
-    document.getElementById(`eliminarbtn${producto.id}`).addEventListener('click', () =>{
-        Swal.fire({
-            icon: "warning",
-            text: `Eliminaste ${producto.nombre} de tu carrito~`,
-            confirmButtonText: 'Entendido',
-            buttonsStyling: false,
-            background: '#735D78' ,
-            width: '20em',
-            color: '#090302' ,
+        plantillaDelCarrito.innerHTML += `<div id="${producto.id}" class="card2">
+                                                <div>
+                                                    <h1 class="card__titulo">${producto.nombre}</h1>
+                                                    <p class="card__precio">Precio: $${producto.precio}</p>
+                                                    <button class="btn btn-secondary borrarbtn2" type="button" id="eliminarbtn${producto.id}"><img src="./media/bx-trash.svg" alt="Borrar producto del carrito"></button>
+                                                </div>
+                                                <div>
+                                                    <img src="${producto.foto}" alt="${producto.nombre}" class="card__pics2">
+                                                </div>
+                                            </div>` ;
+        //Boton para borrar con alert
+        document.getElementById(`eliminarbtn${producto.id}`).addEventListener('click', () =>{
+            Swal.fire({
+                icon: "warning",
+                text: `Eliminaste ${producto.nombre} de tu carrito~`,
+                confirmButtonText: 'Entendido',
+                buttonsStyling: false,
+                background: '#735D78' ,
+                width: '20em',
+                color: '#090302' ,
+            });
+            //Eliminar del dom
+            let tarjeta = document.getElementById(`${producto.id}`);
+            tarjeta.remove();
+            //Eliminar del carrito
+            carritoDeCompras.splice(id, 1);
+            localStorage.setItem("carritoDeCompras", JSON.stringify(carritoDeCompras));
+            })
         });
-        //Eliminar del dom
-        let tarjeta = document.getElementById(`${producto.id}`);
-        tarjeta.remove();
-        //Eliminar del carrito
-        carritoDeCompras.splice(id, 1);
-        localStorage.setItem("carritoDeCompras", JSON.stringify(carritoDeCompras));
-        })
-    });
-    total();
+    total(carritoDeCompras);
 };
 cargandoElCarritoDeCompras();
-
-//EVENTO QUE MUESTRA EL OFFCANVAS
-carritotbtn.addEventListener('click', ()=>{cargandoElCarritoDeCompras()});
 
 //FUNCION COMPRAR
 const swalWithBootstrapButtons = Swal.mixin({
@@ -186,6 +183,9 @@ function comprar(){
         }
     })
 }
+
+//EVENTO QUE MUESTRA EL OFFCANVAS
+carritotbtn.addEventListener('click', ()=>{cargandoElCarritoDeCompras()});
 
 //EVENTO PARA COMPRAR Y TERMINAR
 comprarBtn.addEventListener('click', ()=>{comprar()});

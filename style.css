@@ -171,6 +171,12 @@ body{
     font-size: var(--text-small);
     color: var(--text-color);
 }
+.offcanvas-centrar{
+    display: flex;
+    flex-direction: row-reverse;
+    padding-right: 1em;
+    padding-bottom: 1em;
+}
 /* FORMULARIOS */
 .form{
     /* grid-area: form; */
