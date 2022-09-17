@@ -31,7 +31,8 @@ let plantillaDelCarrito = document.getElementById("plantillaDelCarrito");
 let totalCarrito = document.getElementById("totalCarrito");
 let acumulador;
 let divDeCards = document.getElementById("plantilla");
-let borrarbtn2 = document.getElementsByClassName("borrarbtn2")
+let borrarbtn2 = document.getElementsByClassName("borrarbtn2");
+let comprarBtn = document.getElementById("comprarBtn");
 
 //CREAR CARDS DE PRODUCTOS
 function mostrarCards(){
@@ -58,7 +59,7 @@ function mostrarCards(){
 
 //  CARRITO
 // ARRAY DE CARRITO
-const carritoDeCompras = JSON.parse(localStorage.getItem("carritoDeCompras")) || [];
+let carritoDeCompras = JSON.parse(localStorage.getItem("carritoDeCompras")) || [];
 
 // //FUNCIÓN PARA AÑADIR AL CARRITO
 function aniadirAlCarrito(producto){
@@ -73,7 +74,6 @@ function aniadirAlCarrito(producto){
             buttonsStyling: false,
             background: '#735D78' ,
             width: '20em',
-            height: '20em',
             color: '#090302' ,
         })
     }else{
@@ -84,15 +84,29 @@ function aniadirAlCarrito(producto){
             buttonsStyling: false,
             background: '#735D78' ,
             width: '20em',
-            height: '20em',
             color: '#090302' ,
         })
     }
 }
 
+//TOTAL DE LAS COMPRAS
+function total(){    
+    acumulador = 0;
+    totalCarrito.innerHTML = " "
+    carritoDeCompras.forEach((producto) => {
+        acumulador += producto.precio
+    })
+    totalCarrito.innerHTML = `<div class="offcanvas-body" id="totalCarrito">
+                                    <p>El total de tu compra es de $${acumulador}</p>
+                                    
+                                </div>`
+    localStorage.setItem("carritoDeCompras", JSON.stringify(carritoDeCompras));
+}
+
 //CARGAR COMPRAS AL OFFCANVAS
-plantillaDelCarrito.innerHTML = " " ;
-carritoDeCompras.forEach((producto, id) => {
+async function cargandoElCarritoDeCompras(){
+    plantillaDelCarrito.innerHTML = " " ;
+    carritoDeCompras.forEach((producto, id) => {
     plantillaDelCarrito.innerHTML += `<div id="${producto.id}" class="card2">
                                             <div>
                                                 <h1 class="card__titulo">${producto.nombre}</h1>
@@ -102,7 +116,7 @@ carritoDeCompras.forEach((producto, id) => {
                                             <div>
                                                 <img src="${producto.foto}" alt="${producto.nombre}" class="card__pics2">
                                             </div>
-                                        </div>`
+                                        </div>` ;
     //Boton para borrar con alert
     document.getElementById(`eliminarbtn${producto.id}`).addEventListener('click', () =>{
         Swal.fire({
@@ -112,7 +126,6 @@ carritoDeCompras.forEach((producto, id) => {
             buttonsStyling: false,
             background: '#735D78' ,
             width: '20em',
-            height: '15em',
             color: '#090302' ,
         });
         //Eliminar del dom
@@ -121,17 +134,58 @@ carritoDeCompras.forEach((producto, id) => {
         //Eliminar del carrito
         carritoDeCompras.splice(id, 1);
         localStorage.setItem("carritoDeCompras", JSON.stringify(carritoDeCompras));
-    })
-});
+        })
+    });
+    total();
+};
+cargandoElCarritoDeCompras();
 
-//TOTAL DE LAS COMPRAS
-acumulador = 0;
-totalCarrito.innerHTML = " "
-carritoDeCompras.forEach((producto) => {
-    acumulador += producto.precio
+//EVENTO QUE MUESTRA EL OFFCANVAS
+carritotbtn.addEventListener('click', ()=>{cargandoElCarritoDeCompras()});
+
+//FUNCION COMPRAR
+const swalWithBootstrapButtons = Swal.mixin({
+    customClass: {
+        confirmButton: 'btn btn-success',
+        cancelButton: 'btn btn-danger'
+    },
+    buttonsStyling: false
 })
-totalCarrito.innerHTML = `<div class="offcanvas-body" id="totalCarrito">
-                                <p>El total de tu compra es de $${acumulador}</p>
-                                <button class="btn btn-secondary" type="button">Comprar</button>
-                            </div>`
-localStorage.setItem("carritoDeCompras", JSON.stringify(carritoDeCompras));
+
+function comprar(){
+    swalWithBootstrapButtons.fire({
+        title: '¿Todo listo?',
+        text: "¿Querès finalizar tu compra?",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Si, comprar!',
+        cancelButtonText: 'No, cancelar!',
+        reverseButtons: true,
+        background: '#735D78' ,
+        color: '#090302' ,
+    }).then((result) => {
+        if (result.isConfirmed) {
+            swalWithBootstrapButtons.fire(
+                'Listo! Compra exitosa!',
+                'Su compra se realizò correctamente~',
+                'success'
+            );
+            carritoDeCompras = [];
+            localStorage.removeItem('carritoDeCompras');
+            // Probando
+            console.log(`El total de la compra es de ${acumulador}`);
+            cargandoElCarritoDeCompras(carritoDeCompras);
+        } else if (
+            result.dismiss === Swal.DismissReason.cancel
+        ) {
+            swalWithBootstrapButtons.fire(
+                'Compra cancelada',
+                'Su compra se ha cancelado correctamente~',
+                'error'
+            )
+        }
+    })
+}
+
+//EVENTO PARA COMPRAR Y TERMINAR
+comprarBtn.addEventListener('click', ()=>{comprar()});
