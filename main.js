@@ -107,7 +107,8 @@ function total(){
 async function cargandoElCarritoDeCompras(){
     plantillaDelCarrito.innerHTML = " " ;
     carritoDeCompras.forEach((producto, id) => {
-        plantillaDelCarrito.innerHTML += `<div id="${producto.id}" class="card2">
+        const plantilla = document.createElement('div')
+        plantilla.innerHTML += `<div id="${producto.id}" class="card2">
                                                 <div>
                                                     <h1 class="card__titulo">${producto.nombre}</h1>
                                                     <p class="card__precio">Precio: $${producto.precio}</p>
@@ -117,6 +118,7 @@ async function cargandoElCarritoDeCompras(){
                                                     <img src="${producto.foto}" alt="${producto.nombre}" class="card__pics2">
                                                 </div>
                                             </div>` ;
+        plantillaDelCarrito.appendChild(plantilla);
         //Boton para borrar con alert
         document.getElementById(`eliminarbtn${producto.id}`).addEventListener('click', () =>{
             Swal.fire({
@@ -129,11 +131,12 @@ async function cargandoElCarritoDeCompras(){
                 color: '#090302' ,
             });
             //Eliminar del dom
-            let tarjeta = document.getElementById(`${producto.id}`);
-            tarjeta.remove();
+            // let tarjeta = document.getElementById(`${producto.id}`);
+            plantillaDelCarrito.removeChild(plantilla);
             //Eliminar del carrito
             carritoDeCompras.splice(id, 1);
             localStorage.setItem("carritoDeCompras", JSON.stringify(carritoDeCompras));
+            total(carritoDeCompras);
             })
         });
     total(carritoDeCompras);
